@@ -3,9 +3,9 @@
 This folder contains a collection of bash scripts designed to automate various tasks on Linux and MacOS. 
 
 ## Scripts List
-- `.sh`: This script performs task X and can be run using the command `bash .sh`.
-- `.sh`: This script performs task Y and can be run using the command `bash .sh`.
-- `.sh`: This script performs task Z and can be run using the command `bash .sh`.
+- `Docker_jenkins_install.sh`: This script performs task X and can be run using the command `bash Docker_jenkins_install.sh`.
+- `Lamp_setup_automated.sh`: This script performs task Y and can be run using the command `bash Lamp_setup_automated.sh`.
+- `disk_space_check.sh`: This script performs task Z and can be run using the command `bash disk_space_check.sh`.
 
 ## Requirements
 - Bash
