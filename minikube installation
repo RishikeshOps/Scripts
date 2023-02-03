@@ -1,4 +1,4 @@
-
+# Steps:-
 1. sudo apt-get update
 2. sudo apt-get install docker.io -y
 3. sudo usermod -aG docker $USER && newgrp docker
