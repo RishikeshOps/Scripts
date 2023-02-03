@@ -1,13 +1,13 @@
 # Steps:-
-1. sudo apt-get update
-2. sudo apt-get install docker.io -y
-3. sudo usermod -aG docker $USER && newgrp docker
+sudo apt-get update
+sudo apt-get install docker.io -y
+sudo usermod -aG docker $USER && newgrp docker
 
-4. curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-5. sudo install minikube-linux-amd64 /usr/local/bin/minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-6. sudo snap install kubectl --classic
-7. minikube start --driver-docker
+sudo snap install kubectl --classic
+minikube start --driver-docker
 
 # Reboot your machine once using below command
 # sudo reboot
