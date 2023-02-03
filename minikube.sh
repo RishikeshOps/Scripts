@@ -8,3 +8,6 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 sudo snap install kubectl --classic
 minikube start --driver-docker
+
+# Reboot your machine once using below command
+# sudo reboot
