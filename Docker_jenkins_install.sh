@@ -3,6 +3,7 @@
 #Docker Installetion
 sudo apt update 
 sudo apt  install docker.io -y
+sudo apt install docker-compose -y
 
 #Jenkins Installetion 
 #for jenkins firstly you need java so 
