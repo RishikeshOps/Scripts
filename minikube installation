@@ -11,3 +11,7 @@ minikube start --driver=docker
 
 # Reboot your machine once using below command
 # sudo reboot
+#minikube service --url demo
+# kubectl get po -o wide -n web-app
+#  minikube ssh
+#   curl http://10.244.0.3:5000
