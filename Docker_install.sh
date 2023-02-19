@@ -6,4 +6,3 @@ sudo usermod -aG docker $USER
 
 
 #this is for user data when creating new instance
-
