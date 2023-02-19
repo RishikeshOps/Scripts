@@ -1,3 +1,26 @@
+Jenkins Triggers.
+     To automatically execute a jenkins job, you will use Jenkins triggers
+       Based on:
+
+      Periodic time- schedule
+      Whenever there is a commit in github repo
+      A parent job can trigger execution of child job
+      Execute a job from remote script
+
+You will go to build triggered section in the job to set up a trigger for automatic execution of the job
+
+
+Trigger prieodically
+Go to Job Clone repo --> build trigger--> build preodically --> give */2 * * * * --> Save and build now
+
+All build will be generated automatically every 2 mins
+
+Build Triggers--> Poll SCM --> * * * * *
+
+Build will be generated each time there is a chnage in the repository only.
+****************************************
+
+
 Build too : Maven
 ***************************
 > Powerful project management tool, This tool will help a developer to write his source code and test scripts and maintain them locally
