@@ -1,12 +1,12 @@
 #!/bin/bash
-sudo apt update && sudo apt-get install docker.io -y
-sudo apt install default-jre -y
-sudo apt install default-jdk -y
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt update
-sudo apt install jenkins -y
-sudo systemctl status jenkins
+sudo yum update
+sudo amazon-linux-extras install java-openjdk11 -y
+#sudo yum install java-11-openjdk-devel
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins -y
+systemctl start jenkins
+systemctl status jenkins
 
 
 
