@@ -1,0 +1,228 @@
+Pipeline as code
+
+Pipeline : Set of Jobs executed one after the other
+
+We can write the code to create a Build pipeline and deployment pipeline
+
+There are 2 types of syntax in which we can write the Jenkins pipeline code
+
+1. Scripted pipeline syntax
+
+ > when Jenkins version 1 was released
+ > It is written in DSL - Domain specific language
+ > really good and have knowledge on DSL on order to write the scripts
+ > Is very complex
+ > there is no proper structure of writing script
+ > names of job, build steps, triggers, conditions
+ > it become difficult for people to understand and execute them
+ > It never validates the code for syntax error
+ > it starts executing the script from the begining and any systax error occurs, the pipeline fails
+ > after the fixing the issue, you have to execute the pipeline form the begining
+
+node{
+
+}
+2. Declarative Pipeline syntax
+
+ > with jenkins version 2 was released
+ > This syntax is also based groovy script, which is declarative scripting in nature
+for example: key value
+ name 'sonal'
+company 'edureka'
+course 'devops'
+tool 'Jenkins'
+
+> This syntax provides a defined structure to your pipeline code
+> we have to follow the strucure while writing the code
+> because of which, reading and writing this syntax is easy
+> Jenkins provides a tool --> Declarative pipeline snippet generator
+> This tool is used to automatically generate pipeline code based on users input
+> You can directly use the code in the pipeline.
+> Before execution of the pipeline , jenkins will validate the code and give you syntax error
+> Suppose a stage in the pipeline fails, you can fix the issue and restart the pipeline forma  particular stage
+
+
+Structure of Declartive pipeline code:
+
+pipeline {
+
+// comments
+
+tools{
+
+OPTIONAL
+provide information about which version of tools that will used to build the pipeline
+you will write the code in declartaive format
+
+    tool 'nameof the tool'
+
+ tools configured as part of global tool configuration 
+
+}
+
+
+agent {
+
+MANDATORY
+           // list of VMs where you jobs have to be executed
+
+right now for us, we will execute on the current jenkins machine
+}
+
+stages{
+
+	stage('Job1')
+	{
+		triggers{
+ 				// give tirigger information
+			}
+		steps{
+			mandatory
+			// what should jenkins execute
+			// conditions
+       }
+		post {
+			success{
+				// post build actions
+       }
+	}
+}
+	stage('Job2')
+	{
+		triggers{
+ 				// give tirigger information
+			}
+		steps{
+			mandatory
+			// what should jenkins execute
+       }
+		post {
+			success{
+				// post build actions
+       }
+	}
+}
+	stage('Job3')
+	{
+		triggers{
+ 				// give tirigger information
+			}
+		steps{
+			mandatory
+			// what should jenkins execute
+       }
+		post {
+			success{
+				// post build actions
+       }
+	}
+}
+	stage('Job4')
+	{
+		triggers{
+ 				// give tirigger information
+			}
+		steps{
+			mandatory
+			// what should jenkins execute
+       }
+		post {
+			success{
+				// post build actions
+       }
+	}
+}
+
+
+}
+
+
+
+}
+
+
+
+pipeline {
+   agent any
+   
+   environment {
+        NEWSTORES = "${sh(script:'cat /home/ait_l2/newstores_gcp', returnStdout: true)}"
+    }
+
+   stages {
+      stage('init_env') {
+         steps {
+            echo "NEWSTORES = ${env.NEWSTORES}"
+         }
+      }
+      stage('CM+_pin') {
+         steps {
+            build 'gcp_CM+_pin'
+         }
+      }
+     stage('deploy_table_trigger') {
+         steps {
+            build 'deploy_table_triggers'
+         }
+      }
+      stage('deploy_table_trigger_stream') {
+         steps {
+            build 'deploy_table_triggers_stream'
+         }
+      }
+      stage('copy_magic_portal_files') {
+         steps {
+            build 'copy_mp_files'         
+         }
+      }
+      stage('deploy_magic_portal') {
+         steps {
+            build 'deploy_mp_files'         
+         }
+      }
+      stage('create_partition_on_apidb') {
+          steps {
+             sh label: '', script: "/usr/bin/ssh postgres@10.142.147.181 'sh /home/postgres/partition.sh ${env.NEWSTORES}'"
+
+
+
+
+In jenkins we have a concept of JenkinsFile
+
+With this jenkisn allows you to write pipeline code outside of Jenkisn server and maintain it in VCtool
+
+Jenkins allows you to write pipeline code in file with name Jenkinsfile
+
+The name of the file will be same and it has no extension
+
+Inside this file you directly write the piplein code with stages, tools, environment information
+
+you save and maintain this file in github repo
+
+Team members can update the file --> commit history, version can be maintained
+
+This file can be fetched by jenkins and execute the stages therby creating a pipeline in Jnekins server
+
+
+**********************************
+Multibranch Pipeline
+*************************
+I github repository in this repo we have various branch
+
+Branch related to:
+
+Dev ==> src ==> compile, review, build, deploy(dev)
+
+QA   ==> compile, review, test, build, deploy(qa)
+
+UAT ==> ompile, review, test, build, deploy(uat), UAT Testing
+
+prod ==> the final build ==> deploy on production server
+
+
+We have to create pipline for every branch
+these pipelines should be created automatically in jenkins
+the pipeline should have the name same as that of the branch
+if the branch is deleted in github, automtically the pipeline job should also get deleted
+the pipeline jobs have to be created only for dev, qa and uat and not for production
+Pipeline code should be mainted in github -- Jenkisnfile
