@@ -3,19 +3,24 @@ Step1: On Master Node Only
 ## Install Docker,kubeadm,kubelet,kubectl
 
 sudo wget https://raw.githubusercontent.com/Sonal0409/Kubernetes-Setup/master/installK8S-v1-23.sh -P /tmp
+
 sudo chmod 755 /tmp/installK8S-v1-23.sh
+
 sudo bash /tmp/installK8S-v1-23.sh
+
 
 ## Initialize kubernetes Master Node
  
    sudo kubeadm init --ignore-preflight-errors=all
 
    sudo mkdir -p $HOME/.kube
+   
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   
    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   
 
    ## install networking driver -- Weave/flannel/canal/calico etc... 
-
    ## below installs weave networking driver 
     
    sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" 
@@ -25,8 +30,12 @@ Step2: On All Worker Nodes
 ## Install Docker,kubeadm,kubelet
 
 sudo wget https://raw.githubusercontent.com/lerndevops/labs/master/scripts/installK8S-v1-23.sh -P /tmp
+
 sudo chmod 755 /tmp/installK8S-v1-23.sh
+
 sudo bash /tmp/installK8S-v1-23.sh
+
+
 
 ## Run Below on Master Node to get join token 
 
@@ -36,6 +45,8 @@ kubeadm token create --print-join-command
 
     Ex: kubeadm join 10.128.15.231:6443 --token mks3y2.v03tyyru0gy12mbt \
            --discovery-token-ca-cert-hash sha256:3de23d42c7002be0893339fbe558ee75e14399e11f22e3f0b34351077b7c4b56
+	   
+	   
 Manual Installation Steps
 Step1: On Master Node Only
     ### INSTALL DOCKER 
