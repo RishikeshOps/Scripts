@@ -17,3 +17,5 @@ minikube start --driver=docker
 # curl http://10.244.0.3:5000
 # svcname.namspace.svc.cluster.local
 # kubectl describe service my-lb -n web-app
+# sudo fuser -k 80/tcp
+# netstat -tunlp
