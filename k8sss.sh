@@ -39,3 +39,4 @@ kubectl get nodes
 # kubeadm reset pre-flight checks
 # kubeadm token create --print-join-command
 # kubectl label node ip-172-31-20-246 node-role.kubernetes.io/worker=worker
+# kubectl label nodes ip-172-31-92-99 kubernetes.io/role=worker
