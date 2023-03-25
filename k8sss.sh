@@ -37,3 +37,4 @@ kubectl get nodes
 # worker
 # kubeadm join 172.31.84.66:6443 --token n4tfb4.grmew1s1unug0get     --discovery-token-ca-cert-hash sha256:c3fda2eaf5960bed4320d8175dc6a73b1556795b1b7f5aadc07642ed85c51069 --v=5
 # kubeadm reset pre-flight checks
+# kubeadm token create --print-join-command
