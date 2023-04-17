@@ -23,13 +23,17 @@ kubeadm init
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
   
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+kubeadm token create --print-join-command
+  
+  
 ------------------------------------------- Worker Node ------------------------------------------------ 
 sudo su
------> Paste the Join command on worker node 
+kubeadm reset pre-flight checks
+-----> Paste the Join command on worker node with `--v=5`
 
----------------------------------------Deploy CNI on Master Node-----------------------------------------
-
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+---------------------------------------on Master Node-----------------------------------------
 
 kubectl get nodes 
 
