@@ -15,6 +15,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt update -y
 sudo apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
 
+##To connect with cluster execute below commands on master node and worker node respectively
 --------------------------------------------- Master Node -------------------------------------------------- 
 sudo su
 kubeadm init
@@ -27,12 +28,13 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 
 kubeadm token create --print-join-command
   
-  
+
 ------------------------------------------- Worker Node ------------------------------------------------ 
 sudo su
 kubeadm reset pre-flight checks
------> Paste the Join command on worker node with `--v=5`
+-----> Paste the Join command on worker node and append `--v=5` at end
 
+#To verify cluster connection  
 ---------------------------------------on Master Node-----------------------------------------
 
 kubectl get nodes 
