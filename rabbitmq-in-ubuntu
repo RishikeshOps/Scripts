@@ -34,3 +34,6 @@ sudo rabbitmqctl start_app
 -----> Verify the cluster status by running the following command on either the master or worker node:
 
 sudo rabbitmqctl cluster_status
+
+
+15672
