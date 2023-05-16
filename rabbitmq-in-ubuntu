@@ -1,0 +1,36 @@
+------------------------ Master & Worker Node -------------------------
+
+sudo apt update && sudo apt install rabbitmq-server -y
+
+sudo rabbitmq-plugins enable rabbitmq_management
+
+sudo rabbitmqctl add_user admin your_password
+
+sudo rabbitmqctl set_user_tags admin administrator
+sudo systemctl restart rabbitmq-server
+
+
+
+-------------------- Master Node ------------------
+
+sudo cat /var/lib/rabbitmq/.erlang.cookie
+sudo systemctl stop rabbitmq-server
+
+--------------------- Worker Nodes ------------------------
+
+sudo nano /var/lib/rabbitmq/.erlang.cookie
+-----> remove old cookie and add from master node
+
+sudo chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+sudo chmod 400 /var/lib/rabbitmq/.erlang.cookie
+sudo systemctl start rabbitmq-server
+
+sudo rabbitmqctl stop_app
+sudo rabbitmqctl join_cluster rabbit@master_node_hostname
+sudo rabbitmqctl start_app
+
+
+
+-----> Verify the cluster status by running the following command on either the master or worker node:
+
+sudo rabbitmqctl cluster_status
