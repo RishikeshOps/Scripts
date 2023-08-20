@@ -14,7 +14,7 @@ echo 'deb https://packages.cloud.google.com/apt kubernetes-xenial main' > /etc/a
 apt update -y
 apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
 
-##To connect with cluster execute below commands on master node and worker node respectively
+##To connect with cluster execute above commands on master node and worker node respectively
 --------------------------------------------- Master Node -------------------------------------------------- 
 sudo su
 kubeadm init
