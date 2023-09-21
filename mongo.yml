@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo:latest 
+      #container_name: mongoDB-Cont //specifying container name
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017 
+    volumes:
+      - mongodb_data_cont:/data/db
+volumes:
+  mongodb_data_cont:
