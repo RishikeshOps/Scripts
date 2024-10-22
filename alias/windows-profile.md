@@ -95,6 +95,18 @@ Set-Alias -Name kaf -Value Apply-KubectlFile
 Function Remove-KubectlFile { kubectl delete -f $args }
 Set-Alias -Name kdf -Value Remove-KubectlFile
 
+# Function to support auto-completion
+function k { 
+    param([string]$args)
+    kubectl $args
+}
+
+# Enable auto-completion for kubectl commands
+Register-ArgumentCompleter -CommandName k -ScriptBlock {
+    param($commandName, $wordToComplete, $cursorPosition)
+    kubectl completion pwsh | Out-String | Where-Object { $_ -like "$wordToComplete*" }
+}
+
 # Usage examples:
 # kgp                     # Get all pods in current namespace
 # kgp -n kube-system     # Get pods in kube-system namespace
