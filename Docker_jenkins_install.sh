@@ -8,7 +8,7 @@ sudo apt install docker-compose -y
 #Jenkins Installetion 
 #for jenkins firstly you need java so 
 sudo apt update
-sudo apt install openjdk-11-jre -y
+sudo apt install fontconfig openjdk-17-jre
 
 #Jenkins
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
